@@ -4,8 +4,8 @@
 package com.infosoft.stringfunctions;
 
 /**
- * @author giradkar.akshay
- *SBOperationDemo class will 
+ * @author giradkar.akshay 
+ *SBOperationDemo class includes StringBuilder/StringBuffer api's opeartions
  * 
  */
 public class SBOperationDemo {

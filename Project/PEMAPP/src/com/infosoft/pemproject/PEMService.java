@@ -11,21 +11,51 @@ import java.util.Scanner;
 import java.util.Set;
 
 /**
+ * 
+ * This class contains most of the operations related to PEM Application.
+ * <p>
+ * This class prepares a menu and various method are present to handle the user actions.
+ * This class make use of <code> Repository </code> to store the data.
+ * Also using <code>ReportService </code> to generate various reports. 
  * @author giradkar.akshay
  *
  */
 public class PEMService {
+	
+	/**
+	 * Declare a reference of repository by calling a static method which return a singleton repository object.
+	 */
 
 	Repository repo = Repository.getRepository();
+	
+	
+	/**
+	 * Declare a reference of ReportService to call different methods to calculate reports.
+	 */
 	ReportService reportService = new ReportService();
 	
+	
+	/**
+	 * Declare a Scanner object to take input from keyboard.
+	 */
 	private Scanner scanner = new Scanner(System.in);
+	
+	/**
+	 * This variable store the value of menu choice.
+	 */
 	private int choice;
 	
+	
+	/**
+	 * Call this constructor to create PEMService Object with default details.
+	 */
 	public PEMService() {
-		prepareSampleData(); 
+		//prepareSampleData(); 
 	}
 
+	/**
+	 * This method prepares the PEMApp Menu using switch case and infinite loop and also wait for user to ask choice
+	 */
 	public void showMenu() {
 		while (true) {
 			printMenu();
@@ -90,6 +120,9 @@ public class PEMService {
 			}
 		}
 	}
+	/**
+	 * This method prints a menu(CUI/CLI).
+	 */
 
 	public void printMenu() {
 		System.out.println("------------PEM MENU--------------");
@@ -109,6 +142,10 @@ public class PEMService {
 		choice = scanner.nextInt();
 
 	}
+	
+	/**
+	 * This method is taking expense category name as input to add new category in the system.
+	 */
 
 	public void onAddCategory() {
 		scanner.nextLine();// New line character is read here which is already present in stream and its
@@ -119,6 +156,10 @@ public class PEMService {
 		repo.categoryList.add(cat);
 		System.out.println("SUCCESS : Category added ");
 	}
+	
+	/**
+	 * Call this method to print existing list
+	 */
 
 	public void onCategoryList() {
 		System.out.println("Listing categories.....");
@@ -130,6 +171,9 @@ public class PEMService {
 		}
 
 	}
+	/**
+	 * Call this method to enter expense detail.The entered detail will be added in repository.
+	 */
 
 	public void onExpenseEntry() {
 		System.out.println("Enter Details For Expense Entry :");
@@ -164,7 +208,9 @@ public class PEMService {
 
 		System.out.println("SUCCESS : Expense added ");
 	}
-
+/**
+ * This method prints all the entered expenses.
+ */
 	public void onExpenseList() {
 		System.out.println("Listing expenses.....");
 
@@ -178,7 +224,11 @@ public class PEMService {
 					(i + 1) + ". " + catName + ", " + exp.getRemark() + ", " + exp.getAmount() + ", " + dateString);
 		}
 	}
-
+/**
+ * This method is called for menu to prepare monthly wise expense total.
+ * Its using <code>ReportService </code> to calculate report.
+ * The returned result will be printed.
+ */
 	private void onMonthlyExpenseList() {
 		System.out.println("Monthly expense listing.....");
 		Map<String,Float> resultMap = reportService.calculateMonthlyTotal();
@@ -194,7 +244,11 @@ public class PEMService {
 		}
 
 	}
-
+	/**
+	 * This method is called for menu to prepare yearly wise expense total.
+	 * Its using <code>ReportService </code> to calculate report.
+	 * The returned result will be printed.
+	 */
 	private void onYearlyExpenseList() {
 		System.out.println("Yearly expense listing......");
 		
@@ -216,7 +270,11 @@ public class PEMService {
 		System.out.println(" Total Expenses(INR) : "+total);
 
 	}
-
+	/**
+	 * This method is called for menu to prepare category wise expense total.
+	 * Its using <code>ReportService </code> to calculate report.
+	 * The returned result will be printed.
+	 */
 	private void onCategorizedExpenseList() {
 		System.out.println("categorywise expense listing....");
 		
@@ -241,13 +299,18 @@ public class PEMService {
 		
 
 	}
-
+/**
+ * This method will stop JVM.
+ */
 	private void exit() {
 		System.exit(8);
 
 	}
 
-	
+	/**
+	 * This method is called to hold a output screen after processing the requested task
+	 * and wait for any char input to continue to the menu.
+	 */
 
 	public void pressAnyKeyToContinue() {
 		System.out.println(" Press any key to continue :");
@@ -257,7 +320,10 @@ public class PEMService {
 			e.printStackTrace();
 		}
 	}
-
+/**
+ * This method is preparing sample data for testing purpose.
+ * It should be report once application is  tested OK.
+ */
 	public void prepareSampleData() {
 
 		Category catParty = new Category("Party");
@@ -292,7 +358,9 @@ public class PEMService {
 		repo.expenseList.add(e4);
 
 	}
-
+/**
+ * This method sleep a thread for 10ms.
+ */
 	public void delay() {
 		try {
 			Thread.sleep(10);

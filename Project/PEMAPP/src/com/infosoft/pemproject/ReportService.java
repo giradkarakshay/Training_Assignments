@@ -8,13 +8,23 @@ import java.util.Map;
 import java.util.TreeMap;
 
 /**
+ * This class contains various methods to calculate PEM App reports.
  * @author giradkar.akshay
  *
  */
 public class ReportService {
 
+	/**
+	 * declare a reference of singleton repository.
+	 */
 	private Repository repo = Repository.getRepository();
 
+	
+	/**
+	 * This method will calculate month wise total and returns result in map.
+	 * Its preparing data in proper order.
+	 * @returns 
+	 */
 	public Map<String, Float> calculateMonthlyTotal() {
 		Map<String, Float> map = new TreeMap<>();
 		for (Expense expense : repo.expenseList) {
@@ -35,6 +45,12 @@ public class ReportService {
 		return map;
 
 	}
+	
+	/**
+	 * This method will calculate year wise total and returns result in map.
+	 * Its preparing data in proper order.
+	 * @returns 
+	 */
 	
 	public Map<Integer, Float> calculateYearlyTotal() {
 		Map<Integer, Float> map = new TreeMap<>();
@@ -57,7 +73,12 @@ public class ReportService {
 		return map;
 
 	}
-	
+	/**
+	 * This method returns a category Name for given category Id.
+	 * returns null when wrong category is applied.
+	 * @param categoryId
+	 * @return
+	 */
 	public String categoryNameById(Long categoryId) {
 		for (Category c : repo.categoryList) {
 			if (c.getCategoryId().equals(categoryId)) {
@@ -68,7 +89,11 @@ public class ReportService {
 		return null;// No such Id is present
 	}
 
-	
+	/**
+	 * This method will calculate category wise total and returns result in map.
+	 * Its preparing data in proper order.
+	 * @returns 
+	 */
 	public Map<String, Float> calculateCategorizedTotal() {
 		Map<String, Float> map = new TreeMap<>();
 		for (Expense expense : repo.expenseList) {

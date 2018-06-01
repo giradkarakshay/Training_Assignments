@@ -6,12 +6,20 @@ package com.infosoft.pemproject;
 import java.util.Date;
 
 /**
+ * This is domain class represents expense.
  * @author giradkar.akshay
  *
  */
 public class Expense {
 
+	/**
+	 * Unique expenseId here is auto-generated as current milliseconds but it should be used as primary key generation.
+	 */
 	private Long expenseId = System.currentTimeMillis();
+	
+	/**
+	 * represents a category of this expense.
+	 */
 	private Long categoryId;// FK
 	private Float amount;
 	private Date date;

@@ -172,7 +172,7 @@ public class PEMService {
 
 		for (int i = 0; i < expList.size(); i++) {
 			Expense exp = expList.get(i);
-			String catName = categoryNameById(exp.getCategoryId());
+			String catName = reportService.categoryNameById(exp.getCategoryId());
 			String dateString = DateUtil.dateToString((exp.getDate()));
 			System.out.println(
 					(i + 1) + ". " + catName + ", " + exp.getRemark() + ", " + exp.getAmount() + ", " + dateString);
@@ -219,6 +219,26 @@ public class PEMService {
 
 	private void onCategorizedExpenseList() {
 		System.out.println("categorywise expense listing....");
+		
+		Map<String,Float> resultMap = reportService.calculateCategorizedTotal();
+		
+		Set<String> categories = resultMap.keySet();
+		
+		Float netTotal = 0.0f;
+		
+		for (String categoryName : categories) {
+			
+			Float catWiseTotal = resultMap.get(categoryName);
+			
+			netTotal = netTotal + catWiseTotal;
+			
+			System.out.println(categoryName+" : "+catWiseTotal );
+			
+		}
+		
+		System.out.println("-----------------------------------");
+		System.out.println(" Net Total : "+netTotal);
+		
 
 	}
 
@@ -227,15 +247,7 @@ public class PEMService {
 
 	}
 
-	public String categoryNameById(Long categoryId) {
-		for (Category c : repo.categoryList) {
-			if (c.getCategoryId().equals(categoryId)) {
-				return c.getName();
-			}
-
-		}
-		return null;// No such Id is present
-	}
+	
 
 	public void pressAnyKeyToContinue() {
 		System.out.println(" Press any key to continue :");

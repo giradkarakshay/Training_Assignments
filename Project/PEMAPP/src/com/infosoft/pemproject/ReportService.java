@@ -57,5 +57,42 @@ public class ReportService {
 		return map;
 
 	}
+	
+	public String categoryNameById(Long categoryId) {
+		for (Category c : repo.categoryList) {
+			if (c.getCategoryId().equals(categoryId)) {
+				return c.getName();
+			}
+
+		}
+		return null;// No such Id is present
+	}
+
+	
+	public Map<String, Float> calculateCategorizedTotal() {
+		Map<String, Float> map = new TreeMap<>();
+		for (Expense expense : repo.expenseList) {
+			
+			
+			Long categoryId = expense.getCategoryId();
+			
+			String catName = this.categoryNameById(categoryId);
+			
+			
+			
+			if (map.containsKey(catName)) {
+				// when expense is already present for a month
+				Float total = map.get(catName);
+				total = total + expense.getAmount();
+				map.put(catName, total);
+			} else {
+				map.put(catName, expense.getAmount());
+			}
+
+		}
+
+		return map;
+
+	}
 
 }

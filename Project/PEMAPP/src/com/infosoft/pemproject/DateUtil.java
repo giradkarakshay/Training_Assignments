@@ -42,6 +42,13 @@ public class DateUtil {
 
 	}
 	
+	public static Integer getYear(Date date) {
+
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
+		return new  Integer(sdf.format(date))  ;
+
+	}
+	
 	public static String getMonthName(Integer monthNo)
 	{
 		return MONTHS[monthNo-1];

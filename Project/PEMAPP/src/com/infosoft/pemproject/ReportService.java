@@ -35,5 +35,27 @@ public class ReportService {
 		return map;
 
 	}
+	
+	public Map<Integer, Float> calculateYearlyTotal() {
+		Map<Integer, Float> map = new TreeMap<>();
+		for (Expense expense : repo.expenseList) {
+			Date expDate = expense.getDate();
+			
+			Integer year = DateUtil.getYear(expDate);
+			
+			if (map.containsKey(year)) {
+				// when expense is already present for a month
+				Float total = map.get(year);
+				total = total + expense.getAmount();
+				map.put(year, total);
+			} else {
+				map.put(year, expense.getAmount());
+			}
+
+		}
+
+		return map;
+
+	}
 
 }

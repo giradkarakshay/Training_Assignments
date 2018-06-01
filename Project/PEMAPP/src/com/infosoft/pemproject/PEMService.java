@@ -197,6 +197,23 @@ public class PEMService {
 
 	private void onYearlyExpenseList() {
 		System.out.println("Yearly expense listing......");
+		
+		Map<Integer,Float> resultMap = reportService.calculateYearlyTotal();
+		Set<Integer> years = resultMap.keySet();
+		
+		Float total = 0.0f;
+		
+		for (Integer year : years) {
+			Float exp = resultMap.get(year);
+			total = total+exp;
+			
+			System.out.println(year+" "+exp);
+			
+			
+		}
+		
+		System.out.println("----------------------------");
+		System.out.println(" Total Expenses(INR) : "+total);
 
 	}
 

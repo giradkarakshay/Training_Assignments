@@ -6,7 +6,9 @@ package com.infosoft.pemproject;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
+import java.util.Set;
 
 /**
  * @author giradkar.akshay
@@ -15,8 +17,14 @@ import java.util.Scanner;
 public class PEMService {
 
 	Repository repo = Repository.getRepository();
+	ReportService reportService = new ReportService();
+	
 	private Scanner scanner = new Scanner(System.in);
 	private int choice;
+	
+	public PEMService() {
+		prepareSampleData(); 
+	}
 
 	public void showMenu() {
 		while (true) {
@@ -140,7 +148,7 @@ public class PEMService {
 
 		System.out.println(" Enter Date(DD/MM/YYYY): ");
 		String dateAsString = scanner.nextLine();
-			
+
 		Date date = DateUtil.stringToDate(dateAsString);
 
 		// Add expense detail in expense object
@@ -166,13 +174,24 @@ public class PEMService {
 			Expense exp = expList.get(i);
 			String catName = categoryNameById(exp.getCategoryId());
 			String dateString = DateUtil.dateToString((exp.getDate()));
-			System.out.println((i + 1) + ". " + catName + ", " + exp.getRemark() + ", " + exp.getAmount()
-					+ ", " + dateString);
+			System.out.println(
+					(i + 1) + ". " + catName + ", " + exp.getRemark() + ", " + exp.getAmount() + ", " + dateString);
 		}
 	}
 
 	private void onMonthlyExpenseList() {
 		System.out.println("Monthly expense listing.....");
+		Map<String,Float> resultMap = reportService.calculateMonthlyTotal();
+		Set<String> keys = resultMap.keySet();
+		for(String yearMonth : keys )
+		{
+			String[] arr = yearMonth.split(",");
+			String year = arr[0];
+			Integer monthNo = new Integer(arr[1]);
+			String monthName = DateUtil.getMonthName(monthNo);
+			
+			System.out.println(year+" , "+monthName+" : "+resultMap.get(yearMonth));
+		}
 
 	}
 
@@ -198,7 +217,7 @@ public class PEMService {
 			}
 
 		}
-		return null;//No such Id is present
+		return null;// No such Id is present
 	}
 
 	public void pressAnyKeyToContinue() {
@@ -206,6 +225,49 @@ public class PEMService {
 		try {
 			System.in.read();
 		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void prepareSampleData() {
+
+		Category catParty = new Category("Party");
+		delay();
+
+		Category catShopping = new Category("Shopping");
+		delay();
+
+		Category catGift = new Category("Gift");
+
+		repo.categoryList.add(catParty);
+		repo.categoryList.add(catShopping);
+		repo.categoryList.add(catGift);
+
+		// JAN 2018
+		Expense e1 = new Expense(catParty.getCategoryId(), 1000.0f, DateUtil.stringToDate("01/01/2018"), "GOOD");
+		delay();
+
+		Expense e2 = new Expense(catParty.getCategoryId(), 2000.0f, DateUtil.stringToDate("02/01/2018"), "BAD");
+		delay();
+
+		// FEB 2018
+		Expense e3 = new Expense(catParty.getCategoryId(), 1200.0f, DateUtil.stringToDate("01/02/2018"), "Average");
+		delay();
+
+		Expense e4 = new Expense(catParty.getCategoryId(), 2400.0f, DateUtil.stringToDate("02/02/2018"), "Not Good");
+		delay();
+
+		repo.expenseList.add(e1);
+		repo.expenseList.add(e2);
+		repo.expenseList.add(e3);
+		repo.expenseList.add(e4);
+
+	}
+
+	public void delay() {
+		try {
+			Thread.sleep(10);
+		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 	}

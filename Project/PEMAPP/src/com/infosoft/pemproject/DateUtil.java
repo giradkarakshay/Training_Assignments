@@ -13,6 +13,9 @@ import java.util.Date;
  */
 public class DateUtil {
 
+	public static final String[] MONTHS = { "January", "February", "March", "May", "June", "July", "August",
+			"September", "October", "November", "December" };
+
 	public static Date stringToDate(String dateAsString) {
 
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -27,9 +30,21 @@ public class DateUtil {
 
 	public static String dateToString(Date date) {
 
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");	
-			return sdf.format(date);
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		return sdf.format(date);
 
+	}
+
+	public static String getYearAndMonth(Date date) {
+
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy,MM");
+		return sdf.format(date);
+
+	}
+	
+	public static String getMonthName(Integer monthNo)
+	{
+		return MONTHS[monthNo-1];
 	}
 
 }

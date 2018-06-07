@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="zxx" class="no-js">
+<html>
 <head>
-	<!-- Mobile Specific Meta -->
+
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta name="keywords" content="">
 	<!-- meta character set -->
 	<meta charset="UTF-8">
-	<!-- Site Title -->
+
 	<title>Pemodule</title>
      <link rel="stylesheet" href="css/IndexDemo.css">
 </head>
@@ -39,7 +39,7 @@
 							<h4 class="best">your best partner</h4>
 							<h1 class="pe">Pemodule</h1>
                             <div class="one">
-							     <a href="#">Get Started<span class="lnr lnr-arrow-right"></span></a>
+                                <button class="capsule">Get Started &rarr;</button><span class="lnr lnr-arrow-right"></span>
                             </div>    
 				        </div>						
 					</div>
@@ -51,32 +51,47 @@
 			<!-- Start Feature Area -->
 			<section class="featured">
 				<div class="container">
-					<div class="row-align">
-						<div class="col-divide">
+					<div class="row align-items-center">
+						<div class="col-md-6">
 							<div class="feature-left">
-								<h2>
+								<h2 style="font-style: italic">
 									Reasons To <br>
 									<span>Choose</span> Notebook
 								</h2>
 								<p>
 									Here, I focus on a range of items and features that we use in life without giving them a second thought. such as Coca Cola. Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.
 								</p>
-								<button class="primary-btn hover d-inline-flex align-items-center"><span class="divide">Get Started</span><span class="lnr lnr-arrow-right"></span></button>
+								<button class="capsule">Get Started &rarr;</button>
 							</div>
 						</div>
-						<div class="col-divide">
-							<div class="feature-right">
-                                <img src="img/slider.jpg" alt="">
-								<div class="single-slider item">
-									
-								</div>
+                        <br><br><br><br>
+						<div class="col-md-6" style="position: absolute">
+							<div class="feature-right active-feature-carousel">
+                                 <div class="slider-holder">
+        <span id="slider-image-1"></span>
+        <span id="slider-image-2"></span>
+        <span id="slider-image-3"></span>
+        <div class="image-holder">
+            <img src="img/slider.jpg" class="slider-image" />
+        </div>
+        <div class="button-holder">
+            <a href="#slider-image-1" class="slider-change"></a>
+            <a href="#slider-image-2" class="slider-change"></a>
+            <a href="#slider-image-3" class="slider-change"></a>
+        </div>
+    </div>
+
+
 							</div>
+                           
 						</div>
 					</div>
 				</div>
 			</section>
-			
-			<section class="reasons-choose" data-parallax="scroll" data-image-src="img/parallux-bg.jpg">
+            
+            
+			<!--<img src="img/mid.png" style="width: 115%" />-->
+			<!--<section class="reasons-choose" data-parallax="scroll" data-image-src="img/parallux-bg.jpg">
 				<div class="overlay overlay-bg"></div>
 				<div class="container">
 					<div class="row justify-content-end">
@@ -93,8 +108,8 @@
 					</div>
 				</div>
 			</section>
-			<!-- End parallux Area -->
-			<!-- Start service Area -->
+			 
+			<!--<img src="img/mid1.png" style="width: 115%" />-->
 			<section class="service-area">
 				<div class="container">
 					<div class="row">
@@ -141,8 +156,11 @@
 					</div>
 				</div>
 			</section>
-			<!-- End service Area -->
-			<!-- Start Contact Area -->
+            <br>
+            <br>
+            <br>
+            
+            
 			<section class="contact-area pt-100 pb-100 relative">
 				<div class="overlay overlay-bg"></div>
 				<div class="container">
@@ -154,5 +172,63 @@
 							</p>
 						</div>
 					</div>
+					<form id="myForm" class="contact-form">
+						<div class="row justify-content-center">
+							<div class="col-lg-5">
+								<input name="fname" placeholder="Enter your name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your name'" class="common-input mt-20" required="" type="text">
+							</div>
+							<div class="col-lg-5">
+								<input name="email" placeholder="Enter email address"  onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email address'" class="common-input mt-20" required="" type="email">
+							</div>
+							<div class="col-lg-10">
+								<textarea class="common-textarea mt-20" name="message" placeholder="Messege" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Messege'" required=""></textarea>
+						</div>
+						<div class="col-lg-10 d-flex justify-content-end">
+							<button class="capsule"><span class="text-black mr-10">Send Message</span></button> <br>
+						</div>
+						<div class="alert-msg"></div>
+						</div>
+					</form>
+				</div>
+            </section>
+           <section class="newsletter-area">
+				<div class="container" style="padding: 10%">
+					<div class="row justify-content-center align-items-center">
+						<div class="text-center">
+							<h3>Subscribe for our <span>Newsletter</span></h3>
+							<div class="subcribe-form" id="mc_embed_signup">
+								<form target="_blank" novalidate="true"  method="get" class="subscription relative">
+										<input name="EMAIL" placeholder="Your Email address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Email address'" required="" type="email">
+										<div style="position: absolute; left: -5000px;">
+											<input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
+										</div>
+								</form>
+                                
+							</div>
+						</div>
+					</div>
+                    <br><br>
+                    <button class="capsule">Get Started &rarr; </button>
+				</div>
+			</section>
+            
+            <footer class="footer-area relative">
+				<div class="container">
+					<div class="footer-content d-flex flex-column align-items-center">
+						<div class="footer-menu" >
+							<a href="index.html">Home</a>
+							<a href="generic.html">Generic</a>
+							<a href="elements.html">Elements</a>
+						</div>
+						<div class="footer-social">
+							<a href="#"><i class="facebook"></i></a>
+							<a href="#"><i class="twitter"></i></a>  
+						</div>
+						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+						<div class="copy-right-text">Copyright 2018 &copy; All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a></div>
+						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+					</div>
+				</div>
+			</footer>
 	</body>
 </html>
